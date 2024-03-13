@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="shortcut icon" href="https://png.pngtree.com/png-vector/20210103/ourmid/pngtree-friendly-purple-pin-cut-png-image_2691710.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <style>
+        @font-face {
+            font-family: f1;
+            src: url(fontes/celtic_hand/CELTICHD.TTF);
+        }
+
+        @font-face {
+            font-family: f2;
+            src: url(fontes/mont/Mont-HeavyDEMO.otf);
+        }
+
+        @font-face {
+            font-family: f3;
+            src: url(fontes/godofwar/GODOFWAR.TTF);
+        }
+
+        body{
+            background-color: darkseagreen;
+        }
+
+        h1{
+            text-align: center;
+            font-size: 50px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            color: floralwhite;
+            font-family: f1;
+        }
+
+        input{
+            margin-left: 400px;
+            text-align: center;
+            font-size: 20px;
+            box-shadow: 5px 10px 15px black;
+            border-radius: 7px;
+            font-family: f2;
+        }
+
+        button{
+            font-size: 20px;
+            box-shadow: 5px 10px 15px black;
+            border-radius: 7px;
+            font-family: f2;
+            margin-left: 40px;
+        }
+
+        ul{
+            margin-left: 580px;
+            font-size: 35px;
+            
+        }
+
+        footer{
+            text-align: center;
+            font-size: 30px;
+            margin-top: 450px;
+            font-family: f3;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Lista de Tarefas</h1>
+    <input type="text" id="taskInput" placeholder="Digite uma tarefa">
+    <button onclick="addTask()">Adicionar tarefa</button>
+    <ul id="taskList">
+        <!-- Lista de tarefas será inserida aqui -->
+    </ul>
+
+    <script>
+        function addTask() {
+            var taskInput = document.getElementById("taskInput");
+            var taskText = taskInput.value.trim();
+
+            if (taskText !== "") {
+                var taskList = document.getElementById("taskList");
+                var li = document.createElement("li");
+                li.className = "taskItem";
+                li.innerHTML = taskText + '<button onclick="removeTask(this)">Remover</button>';
+                taskList.appendChild(li);
+                taskInput.value = "";
+            } else {
+                alert("Por favor, insira uma tarefa válida.");
+            }
+        }
+
+        function removeTask(button) {
+            var li = button.parentNode;
+            var ul = li.parentNode;
+            ul.removeChild(li);
+        }
+
+        document.getElementById("taskInput").addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                addTask();
+            }
+        });
+    </script>
+
+    <footer>Desenvolvido por Gabriela Pereira | ProgWeb | Mar2024 &reg;</footer>
+    
+</body>
+</html>
